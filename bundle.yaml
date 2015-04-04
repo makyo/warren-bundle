@@ -1,0 +1,34 @@
+services: 
+  warren: 
+    charm: "local:trusty/warren-charm-0"
+    num_units: 1
+    annotations: 
+      "gui-x": "683"
+      "gui-y": "422.1545350939925"
+  mongodb: 
+    charm: "cs:trusty/mongodb-17"
+    num_units: 1
+    annotations: 
+      "gui-x": "805.386185734802"
+      "gui-y": "692.5530336291488"
+  elasticsearch: 
+    charm: "cs:trusty/elasticsearch-8"
+    num_units: 1
+    annotations: 
+      "gui-x": "549.164284273651"
+      "gui-y": "694.6979734509293"
+  haproxy: 
+    charm: "cs:trusty/haproxy-5"
+    num_units: 1
+    expose: true
+    annotations: 
+      "gui-x": "681.6364359411928"
+      "gui-y": "139.91481610229658"
+relations: 
+  - - "warren:elasticsearch"
+    - "elasticsearch:client"
+  - - "warren:database"
+    - "mongodb:database"
+  - - "warren:website"
+    - "haproxy:reverseproxy"
+series: trusty
