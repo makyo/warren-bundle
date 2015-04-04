@@ -14,6 +14,10 @@ services:
   haproxy: 
     charm: "cs:trusty/haproxy-5"
     num_units: 1
+    options: 
+      services: "- service_name: haproxy_service\n  service_host: \"0.0.0.0\"\n  service_port: 443\n  service_options: [balance leastconn, cookie SRVNAME insert]\n  server_options: maxconn 100 cookie S{i} check\n"
+      ssl_cert: SELFSIGNED
+      ssl_key: SELFSIGNED
     expose: true
     annotations: 
       "gui-x": "681.6364359411928"
@@ -21,9 +25,10 @@ services:
   warren: 
     charm: "local:trusty/warren-charm"
     num_units: 1
+    expose: true
     annotations: 
-      "gui-x": "682.899369328552"
-      "gui-y": "411.4815309436019"
+      "gui-x": "682.8994303637082"
+      "gui-y": "400.6034791857894"
 relations: 
   - - "warren:mongodb"
     - "mongodb:database"
