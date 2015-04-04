@@ -23,7 +23,7 @@ services:
       "gui-x": "681.6364359411928"
       "gui-y": "139.91481610229658"
   warren: 
-    charm: "local:trusty/warren-charm-4"
+    charm: "local:trusty/warren-charm"
     num_units: 1
     expose: true
     annotations: 
