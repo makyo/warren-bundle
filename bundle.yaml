@@ -1,10 +1,4 @@
 services: 
-  warren: 
-    charm: "local:trusty/warren-charm-0"
-    num_units: 1
-    annotations: 
-      "gui-x": "683"
-      "gui-y": "422.1545350939925"
   mongodb: 
     charm: "cs:trusty/mongodb-17"
     num_units: 1
@@ -24,11 +18,17 @@ services:
     annotations: 
       "gui-x": "681.6364359411928"
       "gui-y": "139.91481610229658"
+  warren: 
+    charm: "local:trusty/warren-charm"
+    num_units: 1
+    annotations: 
+      "gui-x": "682.899369328552"
+      "gui-y": "411.4815309436019"
 relations: 
+  - - "warren:mongodb"
+    - "mongodb:database"
   - - "warren:elasticsearch"
     - "elasticsearch:client"
-  - - "warren:database"
-    - "mongodb:database"
   - - "warren:website"
     - "haproxy:reverseproxy"
 series: trusty
